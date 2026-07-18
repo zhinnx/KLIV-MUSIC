@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+:root {
+  --background: #071014;
+  --foreground: #e2e2e2;
+  --surface: #1A2428;
+  --surface-container: #1C262B;
+  --surface-container-high: #263237;
+  --surface-container-highest: #333535;
+  --surface-variant: #3F484E;
+  --surface-dim: #141C20;
+  --primary: #C3F400;
+  --primary-container: #c7f300;
+  --primary-fixed: #C3F400;
+  --primary-fixed-dim: #A7D500;
+  --on-surface: #e2e2e2;
+  --on-surface-variant: #BFCADC;
+  --on-primary-fixed: #171e00;
+  --on-primary-container: #576c00;
+  --outline: #798388;
+  --outline-variant: #444933;
+  --accent: #D1FF00;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans);
+}
+
+.font-display {
+  font-family: var(--font-geist-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Kliv Design System */
+.kliv-bg {
+  background-color: #071014;
+}
+
+.kliv-surface {
+  background-color: #1A2428;
+}
+
+.kliv-primary {
+  color: #C3F400;
+}
+
+.kliv-accent {
+  background-color: #C3F400;
+  color: #171e00;
+}
+
+.btn-primary {
+  background-color: #C3F400;
+  color: #171e00;
+  font-weight: 700;
+  transition: all 0.1s ease;
+}
+
+.btn-primary:hover {
+  background-color: #A7D500;
+}
+
+.btn-primary:active {
+  transform: translate(1px, 1px);
+}
+
+.card {
+  background-color: #1A2428;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: #C3F400;
+}
+
+.track-row {
+  transition: all 0.15s ease;
+}
+
+.track-row:hover {
+  background-color: #1A2428;
+}
+
+.genre-chip {
+  transition: all 0.15s ease;
+}
+
+.genre-chip.active {
+  background-color: #C3F400;
+  color: #171e00;
+  font-weight: 700;
+}
+
+.bottom-nav {
+  background-color: #071014;
+  border-top: 1px solid #2F3A3F;
+}
+
+.mini-player {
+  background-color: #1A2428;
+  border: 1px solid rgba(195, 244, 0, 0.2);
+}
+
+/* Mobile first */
+@media (min-width: 640px) {
+  .mobile-frame {
+    max-width: 420px;
+    margin: 0 auto;
+    box-shadow: 0 0 0 12px #111, 0 25px 50px -12px rgb(0 0 0 / 0.4);
+    border-radius: 48px;
+    overflow: hidden;
+  }
+}
+
+/* Player styles */
+.progress-bar {
+  height: 4px;
+  background-color: #333535;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #C3F400;
+  transition: width 0.1s linear;
+}
+
+.player-controls button {
+  transition: transform 0.1s ease;
+}
+
+.player-controls button:active {
+  transform: scale(0.92);
+}
+
+/* Hide scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Doodle accents */
+.doodle {
+  stroke: #C3F400;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  fill: none;
+}
+
+/* Auth buttons */
+.auth-btn-google {
+  background-color: #fff;
+  color: #171717;
+}
+
+.auth-btn-github {
+  background-color: #1A2428;
+  color: #e2e2e2;
+  border: 1px solid #3F484E;
+}
