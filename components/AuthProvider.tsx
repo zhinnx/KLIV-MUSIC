@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { getSupabase } from '@/lib/supabase';
 import { User } from '@supabase/supabase-js';
+import { getAuthRedirectUrl } from '@/lib/config';
 
 const supabase = getSupabase();
 
@@ -37,10 +38,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signInWithGoogle = async () => {
+    const redirectUrl = getAuthRedirectUrl('/');
+    console.log('[Auth] Google redirectTo:', redirectUrl); // for debugging
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${window.location.origin}/`,
+        redirectTo: redirectUrl,
       },
     });
     if (error) {
@@ -50,10 +53,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signInWithGitHub = async () => {
+    const redirectUrl = getAuthRedirectUrl('/');
+    console.log('[Auth] GitHub redirectTo:', redirectUrl); // for debugging
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${window.location.origin}/`,
+        redirectTo: redirectUrl,
       },
     });
     if (error) {
