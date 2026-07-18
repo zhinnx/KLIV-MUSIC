@@ -9,7 +9,7 @@ import { Settings, MessageCircle, Info, LogOut } from 'lucide-react';
 import { usePlayerStore } from '@/lib/store';
 
 export default function ProfilePage() {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut, signInWithGoogle, signInWithGitHub } = useAuth();
   const router = useRouter();
   const { likedTracks } = usePlayerStore();
 
@@ -35,7 +35,13 @@ export default function ProfilePage() {
 
           <div className="space-y-3">
             <button 
-              onClick={() => router.push('/onboarding')}
+              onClick={async () => {
+                try {
+                  await signInWithGoogle();
+                } catch (e) {
+                  alert('Login Google gagal. Coba lagi.');
+                }
+              }}
               className="w-full bg-white text-black font-semibold py-3.5 rounded-xl flex items-center justify-center gap-3"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -44,7 +50,13 @@ export default function ProfilePage() {
               Lanjutkan dengan Google
             </button>
             <button 
-              onClick={() => router.push('/onboarding')}
+              onClick={async () => {
+                try {
+                  await signInWithGitHub();
+                } catch (e) {
+                  alert('Login GitHub gagal. Coba lagi.');
+                }
+              }}
               className="auth-btn-github w-full font-semibold py-3.5 rounded-xl flex items-center justify-center gap-3"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

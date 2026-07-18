@@ -1,5 +1,5 @@
 // Simple music API layer for Kliv
-// Using mock + direct stream from api-velomusic
+// Using mock + direct stream from api-velomusic (Railway)
 
 export interface Song {
   id: string;
@@ -13,6 +13,7 @@ export interface Song {
   thumbnailLarge?: string;
 }
 
+// Primary streaming endpoint (Railway)
 const STREAM_BASE = "https://api-velomusic-production.up.railway.app";
 
 export function getStreamUrl(videoId: string) {
