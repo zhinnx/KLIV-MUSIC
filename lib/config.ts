@@ -1,25 +1,30 @@
 // =============================================
-// KLIV - Forced Production Domain for OAuth
+// KLIV - OAuth Redirect Domain Configuration
 // =============================================
 
 /**
- * This is the CRITICAL fix for "redirects to localhost".
+ * CRITICAL FIX for "Login redirects to localhost"
  * 
- * Supabase OAuth will ALWAYS redirect users back to this domain.
- * We are hardcoding it so it never uses window.location.origin.
+ * Supabase OAuth `redirectTo` MUST point to the production domain.
+ * We hardcode it here so it never falls back to window.location.origin.
  */
 
-// ✅ PRODUCTION DOMAIN - This is the only URL that should be used for login redirects
+// ✅ Always use this domain for login redirects
 export const AUTH_REDIRECT_DOMAIN = 'https://kliv.web.id';
 
 /**
- * Returns the full redirect URL for Supabase Google/GitHub login.
- * Always points to kliv.web.id (production domain).
+ * Returns the redirect URL passed to Supabase signInWithOAuth.
+ * This is the URL the user will be sent back to after Google/GitHub login.
  */
 export function getAuthRedirectUrl(path: string = '/'): string {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return `${AUTH_REDIRECT_DOMAIN}${cleanPath}`;
 }
 
-// For other links (not auth)
+// For non-auth links (you can use this for general site links)
 export const SITE_URL = AUTH_REDIRECT_DOMAIN;
+
+// Optional: Allow override via environment variable (recommended for Vercel)
+export function getSiteUrl(): string {
+  return process.env.NEXT_PUBLIC_SITE_URL || AUTH_REDIRECT_DOMAIN;
+}
